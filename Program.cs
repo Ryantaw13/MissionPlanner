@@ -92,6 +92,17 @@ namespace MissionPlanner
         [STAThread]
         public static void Main(string[] args)
         {
+            // Hide console window on startup - Ryan's Mission Planner fix
+            try
+            {
+                IntPtr consoleWindow = NativeMethods.GetConsoleWindow();
+                if (consoleWindow != IntPtr.Zero)
+                {
+                    NativeMethods.ShowWindow(consoleWindow, NativeMethods.SW_HIDE);
+                }
+            }
+            catch { }
+
             Start(args);
         }
 
@@ -202,7 +213,7 @@ namespace MissionPlanner
                 return;
             }
 
-            name = "Mission Planner";
+            name = "Ryan's Mission Planner";
 
             try
             {
